@@ -5,7 +5,6 @@ import SearchBar from './components/SearchBar.js';
 import CardGrid from './components/CardGrid.js';    
 
 const App = () => {
-    console.log(Cards); // Add this line to see if the import is successful
   const [searchTerm, setSearchTerm] = useState("");  // State for search term
 
   // Function to handle search input changes
