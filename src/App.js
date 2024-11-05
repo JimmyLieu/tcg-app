@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import cardData from './data/CardData.json';  
+import './App.css';  
+import SearchBar from './components/SearchBar.js';  
+import CardGrid from './components/CardGrid.js';    
 
-function App() {
+const App = () => {
+    console.log(Cards); // Add this line to see if the import is successful
+  const [searchTerm, setSearchTerm] = useState("");  // State for search term
+
+  // Function to handle search input changes
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value.toLowerCase());
+  };
+
+  // Filter cards based on search term
+  const filteredCards = cardData.Cards.filter((card) =>
+    card.Name.toLowerCase().includes(searchTerm)
+  );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>One Piece Database</h1>
+
+      {/* SearchBar Component */}
+      <SearchBar searchTerm={searchTerm} handleSearch={handleSearch} />
+
+      {/* CardGrid Component */}
+      <CardGrid cards={filteredCards} />
     </div>
   );
-}
+};
 
 export default App;
